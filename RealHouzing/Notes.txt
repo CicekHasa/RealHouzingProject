@@ -1,0 +1,23 @@
+-Blank Solution: Proje yeni oluþtururken boþ bir solution açmak için kullanýlýr.
+-Katmanlý bir proje oluþtururken katmanlar için oluþturduðun solution içinde class library(sýnýf kütüphaneleri) projeleri oluþturmalýsýn. Ancak api katmaný da olucaksa orada class library deðil de "Asp.Net Core Web Api" projesi eklenerek api katmaný oluþturulur.
+-Api ve Data Access katamnlarý için aþaðýdaki paketler nuget den kullandýðýn .net core kaç ise onun son sürümü indirilmeli. (Benim .Net Core 6.0)
+	-EntityFrameworkCore paketi
+	-EntityFrameworkCore.Design paketi
+	-EntityFrameworkCore.SqlServer paketi
+	-EntityFrameworkCore.Tools paketi
+
+-Proje çalýþtýrýlýrken önce Api katmaný üzerinden çalýþmalý!
+-Data Access de entityleri Dbset de tanýmlarken property olarak tanýmlamalýsýn.  Yoksa migration eklerken property olmayan entityler tablo olarak eklenmez!
+	Örnek;  public DbSet<Product> Products //Bu þekilde olursa tablo olarak bunu almaz.  public DbSet<Product> Products { get; set; } Bu þekilde olmalý!
+
+-Katmanlardaki Abstract klasörleri benim interface lerimi tutar.
+-Katmanlardaki Entity Framework ve Concrete klasörleri benim sýnýflarýmý tutar.
+-Data Access katmanýndaki Repository klasörü ise benim tasarým desenini oluþturduðum yeri tutar.
+
+-Garbage Collector (Çöp Toplayýcý), .NET’in bellek yönetiminden sorumlu mekanizmasýdýr. Kullanýlmayan nesneleri otomatik olarak temizleyerek bellek sýzýntýlarýný önler.
+-using kullanýmý: Nesne oluþtururken baþýnda using kullanmak o nesne kullanýmý bittikten sonra otomatik olarak bellekten siler ve belleði temizler.
+-Set<T> EF Core’daki DbContext sýnýfýnda bulunan Set<T>() metodu, veritabanýndaki tablolarý temsil eden DbSet<T> nesnesini almak için kullanýlýr. (GenericRepository.cs)
+-Api katmanýnda controller oluþtururken Api alaýnýndaki controller seçilir.
+-Ok(): Bu method api de iþlemin baþarýlý olduðu anlamýna gelir.
+-SSl Sertifika hatasý için launchsetting de sslport silinir. ve https protokolleri http olarak düzenlenmeli!
+-Asp.Net Core 5.0 da konfigürasyonlarý Startup.cs de yapýlýyordu. Core 6.0 ile beraber program.cs 'e taþýndý. Api katmanýnda program.cs sýnýfý içerisinde enitity lerin ve Db ekleme konfigürasyonlarý yapýlýr.
