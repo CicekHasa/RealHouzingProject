@@ -29,6 +29,11 @@ public class ProductManager : IProductService
         return _productDal.GetList();
     }
 
+    public List<Product> TGetProductsWithCategories()
+    {
+       return _productDal.GetProductsWithCategories();
+    }
+
     public void TInsert(Product t)
     {
         _productDal.Insert(t);

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RealHouzing.BusinessLayer.Abstract;
+using RealHouzing.DtoLayer.CategoryDtos;
+using RealHouzing.EntityLayer.Concrete;
 
 namespace RealHouzing.ApiLayer.Controllers;
 
@@ -9,23 +11,53 @@ public class CategoryController : ControllerBase
 {
     private readonly ICategoryService _categoryService;
 
-	public CategoryController(ICategoryService categoryService)
-	{
-		_categoryService= categoryService;
-	}
+    public CategoryController(ICategoryService categoryService)
+    {
+        _categoryService = categoryService;
+    }
 
-	[HttpGet]
-	public IActionResult CategoryList()
-	{
-		var values=_categoryService.TGetList();
-		return Ok(values);
-	}
+    [HttpGet]
+    public IActionResult CategoryList()
+    {
+        var values = _categoryService.TGetList();
+        return Ok(values);
+    }
 
-	[HttpDelete]
-	public IActionResult DeleteCategory(int id)
-	{
-		var values=_categoryService.TGetById(id);
-		_categoryService.TDelete(values);
-		return Ok();
-	}
+    [HttpDelete]
+    public IActionResult DeleteCategory(int id)
+    {
+        var values = _categoryService.TGetById(id);
+        _categoryService.TDelete(values);
+        return Ok();
+    }
+
+    [HttpPost]
+    public IActionResult InsertCategory(ResultCategoryDto resultCategoryDto)
+    {
+        //Manuel olarak Dto daki sınıfı entity sınıfına dönüştürüyoruz.
+        Category category = new Category()
+        {
+            CategoryName = resultCategoryDto.CategoryName
+        };
+        _categoryService.TInsert(category);
+        return Ok();
+    }
+    [HttpPut]
+    public IActionResult UpdateCategory(UpdateCategoryDto updateCategoryDto)
+    {
+        Category category = new Category()
+        {
+            CategoryID = updateCategoryDto.CategoryId,
+            CategoryName = updateCategoryDto.CategoryName
+        };
+        _categoryService.TUpdate(category);
+        return Ok();
+    }
+
+    [HttpGet("GetCategory")]
+    public IActionResult GetCategory(int id)
+    {
+        var values = _categoryService.TGetById(id);
+        return Ok(values);
+    }
 }

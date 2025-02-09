@@ -21,3 +21,50 @@
 -Ok(): Bu method api de iþlemin baþarýlý olduðu anlamýna gelir.
 -SSl Sertifika hatasý için launchsetting de sslport silinir. ve https protokolleri http olarak düzenlenmeli!
 -Asp.Net Core 5.0 da konfigürasyonlarý Startup.cs de yapýlýyordu. Core 6.0 ile beraber program.cs 'e taþýndý. Api katmanýnda program.cs sýnýfý içerisinde enitity lerin ve Db ekleme konfigürasyonlarý yapýlýr.
+-DTO (Data Transfer Object) Katmaný: DTO (Data Transfer Object - Veri Aktarým Nesnesi) katmaný, verileri bir katmandan diðerine taþýmak için kullanýlan nesnelerdir. Genellikle entity sýnýflarýndan farklýdýr ve aþaðýdaki amaçlarla kullanýlýr:
+
+	*Gereksiz verileri gizlemek: Entity sýnýflarý genellikle gereksiz tüm verileri içerir. DTO ise yalnýzca gereken alanlarý içerir.
+	*Güvenlik saðlamak: Hassas verilerin istemciye gönderilmesini önler.
+	*Performansý artýrmak: Gereksiz alanlarý içermediði için daha az veri taþýnýr.
+	*Baðýmlýlýðý azaltmak: Entity sýnýflarýnýn doðrudan API'ye baðlanmasýný engeller, böylece entity'lerde yapýlan deðiþiklikler API’yi bozmaz.
+
+- Entity için Dto katmanýnda oluþturduðun class'ý entity classýna dönüþtürmek gerekir. 2 farklý yöntem ile yapýlabilir.
+	1-Manuel Dönüþtürme (Api katmanýnda CategoryController.cs)
+		Not:Dto katmanýnda oluþturduðun sýnýfýn field larý ile entity sýnýfýndaki field nameler uyuþmasa olur. Manuel oalrak nesneye new lerken atama yapýlýyor.
+	2 AutoMapper Yöntemi ile burada manuel yapýlan þey arka tarafta ilgili entity ilgili dto ya dönüþtürlüyor.
+		Not: Oluþturulan Dto katmanýndaki sýnýfýn içindeki property ler entity sýnfý içindeki propertyler ile ayný adda olmalý.
+		Yoksa otomatik olarak maplerken hata verebilir.
+
+-[HttpPut] attribütü: Asp.Net core da entity leri güncellemek için kullanýlan bir attribüttür.
+-Fetch error/Internal Server Error http://localhost:7073/swagger/v1/swagger.json Hatasý: Api katmanýnda oluþturduðum controller da birden fazla ayný attrübüt oluþturunca bu hata oluþur. Ayný adda birden fazla attribüt oluþturmak için o attribüt içine methodun adý da verilmeli hata vermemesi için (Api katmanýnda CategoryController.cs)
+
+-System.Text.Json.JsonException: A possible object cycle was detected. This can either be due to a cycle or if the object depth is larger than the maximum allowed depth of 32. Consider using ReferenceHandler.Preserve on JsonSerializerOptions to support cycles. Hatasý: Product entitysinde catgory alaný category entitysi ile iliþkili o tablodaki categoryname'i getirirken bu hata oluþtu. Bunu Api katmanýnda Program.cs de alttaki kodu yazarak çözdük.
+	*builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+    });
+
+
+-Api katmanýnda controller'larda Crud iþlemlerimi yaptýktan sonra þimdi web admin paneli veya arayüzünde verileri db den çekmek yerine kendi oluþturduðum Api dan çekeceðim. Buna da Api Consume denir. Api Consume için Solution da bir tane Asp.Net Core Wep App(Model-View-Controller) projesi ekledim.
+
+-API Consume (API Tüketme) Nedir?
+	* API Consume, baþka bir API’den (Web Servisinden) veri almak veya ona veri göndermek anlamýna gelir.
+
+-IHttpClientFactory Nedir?
+	*IHttpClientFactory, ASP.NET Core 2.1 ile tanýtýlan bir arayüzdür ve HttpClient nesnelerini yönetmek için kullanýlýr.
+	Not:Bu inrerface den bir constructor oluþturarak dependency injection yaptýk. Bunun Registration iþlemi Program.cs de builder.Services.AddHttpClient(); eklemesi gerek!
+
+-Kendi apimden consume edeceðim oluþturduðum controller da methodlar async olmalý çünkü içerisinde async methodlar çalýþtýracaðým.(RealHouzing.Consume katmanýnda CategoryController.cs)
+-Apiden veri çekme iþlemlerinde bize gelen datalar json tipte geliyor. Biz onlarý text'e çevirmek için JsonConvert nesnesinin Deserialize methodunu kullanmamýz gerekiyor. Api servisi üzerinden ekleme veya güncelleme yapacaðýmýz zaman yolladýðýmýz data text olduðundan ancak api json model istediði için JsonConvert nesnesinin bu sefer Serialize methodunu kullanýyoruz.
+
+-Consume katmaný tüm katmanlardan baðýmsýz olmalý bir baðlýlýðý olmamalý baþka projelerde de kullanýlabilmeli!
+- var values = JsonConvert.Deserialize<List<>>(jsonData); Burada json formattaki string veriyi listelemek istediðim list içindeki bir sýnýfa dönüþtürecek. Örneðin Category içindeki bilgileri çekiyorsam diðer katmanlardan da category entitysine ulaþmamam lazým. O yüzden Consume katmanýndaki Model de kendime bir category için viewmodel sýnýfý oluþturacaðým.
+-Not:Oluþturacaðým view model sýnýfý entity katmanýndaki alan isimleri ile ayný adda olmalý ki dönüþtürme yaparken eþleyebilsin!!!
+
+-An unhandled exception occurred while processing the request.
+SocketException: Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý. Hatasý:
+	Consume katmanýnda bir ekraný açmak için önce api servisin ayakta olmasý lazým. Eðer api servisi ayakta deðilse consume çalýþýrken bu hatayý verir.
+- NOT: Bunu çözmek için uygulamayý çalýþtýrýrken hem api katmaný hem de consume katamný ayný anda çalýþmalýdýr. Bunun için solution da sað týk ile Set as startup project de Multiple Project seçip orada hem api katmaný hem de consume katmanýný start moda çekmek gerekir.
+
+-Her iki katman ayaðý kalkarken browser da hem swagger için bir sekme hem de consume de gözükecek veri için bir sekme açýlýr. Swagger ile iþlem yapmayacaksan sadece arka planda api çalýþmasýný istiyorsan api katmanýndaki launcherSettings.json da launcBrowser alaný false yapýlýr.

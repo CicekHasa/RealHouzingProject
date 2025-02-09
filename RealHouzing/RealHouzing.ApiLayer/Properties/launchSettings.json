@@ -3,8 +3,9 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "launchBrowser": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:47572",
+      "applicationUrl": "http://localhost:47572"
     }
   },
   "profiles": {
