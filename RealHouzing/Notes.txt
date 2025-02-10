@@ -68,3 +68,10 @@ SocketException: Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý. H
 - NOT: Bunu çözmek için uygulamayý çalýþtýrýrken hem api katmaný hem de consume katamný ayný anda çalýþmalýdýr. Bunun için solution da sað týk ile Set as startup project de Multiple Project seçip orada hem api katmaný hem de consume katmanýný start moda çekmek gerekir.
 
 -Her iki katman ayaðý kalkarken browser da hem swagger için bir sekme hem de consume de gözükecek veri için bir sekme açýlýr. Swagger ile iþlem yapmayacaksan sadece arka planda api çalýþmasýný istiyorsan api katmanýndaki launcherSettings.json da launcBrowser alaný false yapýlýr.
+
+-StringContent sýnýfý://HTTP isteðinin body’sine JSON verisini eklemek için bir içerik nesnesi oluþturur.
+	*Encoding.UTF8:Türkçe karakterler gibi özel karakterlerin bozulmasýný önler
+	*application/json:Ýçerik türünü (Content-Type) application/json olarak belirtir. (API'ler JSON formatýný tanýyabilsin diye).
+
+-View sayfalarýnda Form veya table küçük oluyorsa aþaðýdaki link design kýsmýnda eklenmemiþtir.
+	<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
