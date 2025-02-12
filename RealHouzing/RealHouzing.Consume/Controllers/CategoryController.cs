@@ -54,4 +54,44 @@ public class CategoryController : Controller
         }
         return View();
     }
+
+    public async Task<IActionResult> DeleteCategory(int id)
+    {
+        var client=_httpClientFactory.CreateClient();
+        var responseMessage = await client.DeleteAsync($"http://localhost:47572/api/Category?id={id}");
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            return RedirectToAction("Index");
+        }
+        return View();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> UpdateCategory(int id)
+    {
+        var client = _httpClientFactory.CreateClient();
+        var responseMessage = await client.GetAsync($"http://localhost:47572/api/Category/GetCategory?id={id}");
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            //Gelen jsonDatayı string yapıya dönüştür.
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var values=JsonConvert.DeserializeObject<UpdateCategoryViewModel>(jsonData);
+            return View(values);
+        }
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdateCategory(UpdateCategoryViewModel updateCategoryViewModel)
+    {
+        var client=_httpClientFactory.CreateClient();
+        var jsonData=JsonConvert.SerializeObject(updateCategoryViewModel);
+        StringContent stringContent = new StringContent(jsonData,Encoding.UTF8,"application/json");
+        var responseMessage = await client.PutAsync("http://localhost:47572/api/Category/",stringContent);
+        if (responseMessage.IsSuccessStatusCode)
+        {
+            return RedirectToAction("Index");
+        }
+        return View();
+    }
 }

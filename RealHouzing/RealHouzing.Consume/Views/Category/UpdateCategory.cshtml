@@ -1,0 +1,18 @@
+﻿@model UpdateCategoryViewModel
+@{
+    Layout = null;
+}
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+<div class="container">
+    <form method="post">
+        <label>Kategori ID</label>
+        <input type="text" readonly="readonly" asp-for="CategoryID" class="form-control" />
+        <br />
+        <label>Kategori Adı</label>
+        <input type="text" class="form-control" asp-for="CategoryName" />
+        <br />
+        <button class="btn btn-primary">Kategori Güncelle</button>
+    </form>
+</div>
