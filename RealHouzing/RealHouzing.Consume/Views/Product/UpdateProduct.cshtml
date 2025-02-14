@@ -1,0 +1,42 @@
+﻿@model UpdateProductViewModel
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <br />
+    <form method="post">
+        <br />
+        <input type="hidden" asp-for="ProductID" />
+        <label>İlan Başlığı</label>
+        <input type="text" class="form-control" asp-for="ProductTitle" />
+        <br />
+        <label>İlan Fiyatı</label>
+        <input type="text" asp-for="ProductPrice" class="form-control" />
+        <br />
+        <label>İlan Türü</label>
+        <input type="text" class="form-control" asp-for="ProductType" />
+        <br />
+        <label>İlan Adresi</label>
+        <input type="text" class="form-control" asp-for="ProductAdress" />
+        <br />
+        <label>Yatak Odası Sayısı</label>
+        <input type="number" class="form-control" asp-for="BedRoomCount" />
+        <br />
+        <label>Banyo Sayısı</label>
+        <input type="number" class="form-control" asp-for="BathCount" />
+        <br />
+        <label>Metrekara</label>
+        <input type="number" class="form-control" asp-for="Square" />
+        <br />
+        <label>İlan Kapak Fotoğrafı</label>
+        <input type="text" class="form-control" asp-for="CoverImageUrl" />
+        <br />
+        <label>Kategori</label>
+        @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.Categories,new{@class="form-control"})
+        <br />
+        <button class="btn btn-outline-success">İlanı Güncelle</button>
+    </form>
+</div>
