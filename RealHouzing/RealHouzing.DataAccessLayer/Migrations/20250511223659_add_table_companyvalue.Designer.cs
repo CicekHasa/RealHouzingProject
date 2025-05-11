@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RealHouzing.DataAccessLayer.Concrete;
 
@@ -11,9 +12,10 @@ using RealHouzing.DataAccessLayer.Concrete;
 namespace RealHouzing.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20250511223659_add_table_companyvalue")]
+    partial class add_table_companyvalue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,27 +163,6 @@ namespace RealHouzing.DataAccessLayer.Migrations
                     b.HasKey("FeatureCardID");
 
                     b.ToTable("FeatureCards");
-                });
-
-            modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.FrequentlyAskedQuestion", b =>
-                {
-                    b.Property<int>("FrequentlyAskedQuestionID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FrequentlyAskedQuestionID"), 1L, 1);
-
-                    b.Property<string>("Answer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Question")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FrequentlyAskedQuestionID");
-
-                    b.ToTable("FrequentlyAskedQuestions");
                 });
 
             modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.MainContent", b =>

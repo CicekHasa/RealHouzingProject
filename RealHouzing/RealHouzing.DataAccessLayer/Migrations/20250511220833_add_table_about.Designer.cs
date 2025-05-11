@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RealHouzing.DataAccessLayer.Concrete;
 
@@ -11,9 +12,10 @@ using RealHouzing.DataAccessLayer.Concrete;
 namespace RealHouzing.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20250511220833_add_table_about")]
+    partial class add_table_about
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,52 +94,6 @@ namespace RealHouzing.DataAccessLayer.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.CompanyValue", b =>
-                {
-                    b.Property<int>("CompanyValueID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CompanyValueID"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MainTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Percentage1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Percentage2")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Percentage3")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SubTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ValueTitle1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ValueTitle2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ValueTitle3")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CompanyValueID");
-
-                    b.ToTable("CompanyValues");
-                });
-
             modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.FeatureCard", b =>
                 {
                     b.Property<int>("FeatureCardID")
@@ -161,27 +117,6 @@ namespace RealHouzing.DataAccessLayer.Migrations
                     b.HasKey("FeatureCardID");
 
                     b.ToTable("FeatureCards");
-                });
-
-            modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.FrequentlyAskedQuestion", b =>
-                {
-                    b.Property<int>("FrequentlyAskedQuestionID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FrequentlyAskedQuestionID"), 1L, 1);
-
-                    b.Property<string>("Answer")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Question")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("FrequentlyAskedQuestionID");
-
-                    b.ToTable("FrequentlyAskedQuestions");
                 });
 
             modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.MainContent", b =>

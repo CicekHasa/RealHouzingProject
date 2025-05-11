@@ -2,7 +2,8 @@ using RealHouzing.BusinessLayer.Abstract;
 using RealHouzing.BusinessLayer.Concrete;
 using RealHouzing.DataAccessLayer.Abstract;
 using RealHouzing.DataAccessLayer.Concrete;
-using RealHouzing.DataAccessLayer.Entity_Framewrok;
+using RealHouzing.DataAccessLayer.Entity_Framework;
+using RealHouzing.EntityLayer.Concrete;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +12,36 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<Context>();//Db eriþimi için!
 builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
+
 builder.Services.AddScoped<IProductDal, EfProductDal>();
 builder.Services.AddScoped<IProductService, ProductManager>();
+
+builder.Services.AddScoped<IServiceCategoiresDal, EfServiceCategoriesDal>();
+builder.Services.AddScoped<IServiceCategoriesService,ServiceCategoriesManager>();
+
+builder.Services.AddScoped<IMainContentDal, EfMainContentDal>();
+builder.Services.AddScoped<IMainContentService, MainContentManager>();
+
+builder.Services.AddScoped<IFeatureCardDal,EfFeatureCardDal>();
+builder.Services.AddScoped<IFeatureCardService, FeatureCardManager>();
+
+builder.Services.AddScoped<IReviewDal,EfReviewDal>();
+builder.Services.AddScoped<IReviewService,ReviewManger>();
+
+builder.Services.AddScoped<INewDal,EfNewDal>();
+builder.Services.AddScoped<INewService,NewManager>();
+
+builder.Services.AddScoped<ISubscribeDal,EfSubscribeDal>();
+builder.Services.AddScoped<ISubscribeService,SubscribeManager>();
+
+builder.Services.AddScoped<IAboutDal,EfAboutDal>();
+builder.Services.AddScoped<IAboutService,AboutManager>();
+
+builder.Services.AddScoped<ICompanyValueDal,EfCompanyValueDal>();
+builder.Services.AddScoped<ICompanyValueService, CompanyValueManager>();
+
+builder.Services.AddScoped<IFrequentlyAskedQuestionDal, EfFrequentlyAskedQuestionDal>();
+builder.Services.AddScoped<IFrequentlyAskedQuestionService, FrequentlyAskedQuestionManager>();
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>

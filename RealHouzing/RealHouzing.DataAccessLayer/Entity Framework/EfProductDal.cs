@@ -4,7 +4,7 @@ using RealHouzing.DataAccessLayer.Concrete;
 using RealHouzing.DataAccessLayer.Repository;
 using RealHouzing.EntityLayer.Concrete;
 
-namespace RealHouzing.DataAccessLayer.Entity_Framewrok;
+namespace RealHouzing.DataAccessLayer.Entity_Framework;
 
 public class EfProductDal : GenericRepository<Product>, IProductDal
 {
