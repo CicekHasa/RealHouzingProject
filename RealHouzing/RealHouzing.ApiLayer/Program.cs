@@ -43,6 +43,21 @@ builder.Services.AddScoped<ICompanyValueService, CompanyValueManager>();
 builder.Services.AddScoped<IFrequentlyAskedQuestionDal, EfFrequentlyAskedQuestionDal>();
 builder.Services.AddScoped<IFrequentlyAskedQuestionService, FrequentlyAskedQuestionManager>();
 
+builder.Services.AddScoped<ITeamMemberDal,EfTeamMemberDal>();
+builder.Services.AddScoped<ITeamMemberService,TeamMemberManager>();
+
+builder.Services.AddScoped<IServiceDal,EfServiceDal>();
+builder.Services.AddScoped<IServicesService, ServiceManager>();
+
+builder.Services.AddScoped<IPlanDal,EfPlanDal>();
+builder.Services.AddScoped<IPlanService,PlanManager>();
+
+builder.Services.AddScoped<IContactInfoDal,EfContactInfoDal>();
+builder.Services.AddScoped<IContactInfoService,ContactInfoManager>();
+
+builder.Services.AddScoped<IContactMessageDal,EfContactMessageDal>();
+builder.Services.AddScoped<IContactMessageService,ContactMessageManager>();
+
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {

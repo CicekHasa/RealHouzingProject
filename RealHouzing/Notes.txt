@@ -75,3 +75,6 @@ SocketException: Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý. H
 
 -View sayfalarýnda Form veya table küçük oluyorsa aþaðýdaki link design kýsmýnda eklenmemiþtir.
 	<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+ -[Range(0, 100, ErrorMessage = "Yüzde deðeri 0 ile 100 arasýnda olmalýdýr.")]: Oluþturduðun entity içerisindeki fieldlar üzerine attrbute ekleyerek veri eklerken kontrolünü saðlayabilirsiniz. Eðer entity baðlantýsýný aradan çýkarýp Dto katmaný kullanýyorsanýz bu attrbute dto katmanýndaki field da olmalý. Bu attribute ise koyulduðu field'ýn 0-100 deðerlerinde girebilmesini aksi takdirde error message'ý basar.
+

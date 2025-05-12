@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RealHouzing.DataAccessLayer.Concrete;
 
@@ -11,9 +12,10 @@ using RealHouzing.DataAccessLayer.Concrete;
 namespace RealHouzing.DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20250512112748_add_table_teammember")]
+    partial class add_table_teammember
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -87,10 +89,6 @@ namespace RealHouzing.DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("CategoryID");
 
                     b.ToTable("Categories");
@@ -140,88 +138,6 @@ namespace RealHouzing.DataAccessLayer.Migrations
                     b.HasKey("CompanyValueID");
 
                     b.ToTable("CompanyValues");
-                });
-
-            modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.ContactInfo", b =>
-                {
-                    b.Property<int>("ContactInfoID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactInfoID"), 1L, 1);
-
-                    b.Property<string>("AdressIconUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Adress_1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Adress_2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MailIconUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mail_1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mail_2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneIconUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone_1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone_2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ContactInfoID");
-
-                    b.ToTable("ContactInfos");
-                });
-
-            modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.ContactMessage", b =>
-                {
-                    b.Property<int>("ContactMessageID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContactMessageID"), 1L, 1);
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Mail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Subject")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ContactMessageID");
-
-                    b.ToTable("ContactMessages");
                 });
 
             modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.FeatureCard", b =>
@@ -331,40 +247,6 @@ namespace RealHouzing.DataAccessLayer.Migrations
                     b.ToTable("News");
                 });
 
-            modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.Plan", b =>
-                {
-                    b.Property<int>("PlanID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlanID"), 1L, 1);
-
-                    b.Property<int>("FeatureListingCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("IconUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ListingCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PriceText")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RefundPercentage")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PlanID");
-
-                    b.ToTable("Plans");
-                });
-
             modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.Product", b =>
                 {
                     b.Property<int>("ProductID")
@@ -438,31 +320,6 @@ namespace RealHouzing.DataAccessLayer.Migrations
                     b.HasKey("ReviewID");
 
                     b.ToTable("Reviews");
-                });
-
-            modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.Service", b =>
-                {
-                    b.Property<int>("ServiceID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceID"), 1L, 1);
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IconUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ServiceID");
-
-                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("RealHouzing.EntityLayer.Concrete.ServiceCategories", b =>

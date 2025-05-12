@@ -19,5 +19,10 @@ public class Context : DbContext
     public DbSet<About> AboutUs { get; set; }
     public DbSet<CompanyValue> CompanyValues { get; set; }
     public DbSet<FrequentlyAskedQuestion> FrequentlyAskedQuestions { get; set; }
+    public DbSet<TeamMember> TeamMembers { get; set; }
+    public DbSet<Service> Services { get; set; }
+    public DbSet<Plan> Plans { get; set; }
+    public DbSet<ContactInfo> ContactInfos { get; set; }
+    public DbSet<ContactMessage> ContactMessages { get; set; }
 }
 
