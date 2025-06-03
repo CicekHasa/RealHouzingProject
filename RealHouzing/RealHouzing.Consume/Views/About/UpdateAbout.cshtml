@@ -1,0 +1,46 @@
+﻿@model UpdateAboutViewModel
+@{
+    ViewData["Title"] = "UpdateAbout";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <br />
+    <form method="post">
+        <br />
+        <input type="hidden" asp-for="Id" />
+        <label>Başlık</label>
+        <input type="text" class="form-control" asp-for="Title" readonly/>
+        <br />
+        <label>Alt Başlık</label>
+        <input type="text" class="form-control" asp-for="SubTitle" readonly />
+        <br />
+        <label>Açıklama</label>
+        <input type="text" class="form-control" asp-for="Description" readonly />
+        <br />
+        <label>1.Özellik</label>
+        <input type="text" class="form-control" asp-for="Feature_1" />
+        <br />
+        <label>2.Özellik</label>
+        <input type="text" class="form-control" asp-for="Feature_2"/>
+        <br />
+        <label>3.Özellik</label>
+        <input type="text" class="form-control" asp-for="Feature_3" />
+        <br />
+        <label>4.Özellik</label>
+        <input type="text" class="form-control" asp-for="Feature_4" />
+        <br />
+        <label>5.Özellik</label>
+        <input type="text" class="form-control" asp-for="Feature_5"/>
+        <br />
+        <label>6.Özellik</label>
+        <input type="text" class="form-control" asp-for="Feature_6" />
+        <br />
+        <label>Resim Yolu</label>
+        <input type="text" class="form-control" asp-for="ImageUrl" readonly/>
+        <br />
+        <button class="btn btn-success">Güncelle</button>
+    </form>
+</div>

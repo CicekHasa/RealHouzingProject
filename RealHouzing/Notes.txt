@@ -60,7 +60,7 @@
 
 -Consume katmaný tüm katmanlardan baðýmsýz olmalý bir baðlýlýðý olmamalý baþka projelerde de kullanýlabilmeli!
 - var values = JsonConvert.Deserialize<List<>>(jsonData); Burada json formattaki string veriyi listelemek istediðim list içindeki bir sýnýfa dönüþtürecek. Örneðin Category içindeki bilgileri çekiyorsam diðer katmanlardan da category entitysine ulaþmamam lazým. O yüzden Consume katmanýndaki Model de kendime bir category için viewmodel sýnýfý oluþturacaðým.
--Not:Oluþturacaðým view model sýnýfý entity katmanýndaki alan isimleri ile ayný adda olmalý ki dönüþtürme yaparken eþleyebilsin!!!
+-Not:Consume katmanýnda Oluþturacaðým view model sýnýfý entity katmanýndaki alan isimleri ile ayný adda olmalý ki dönüþtürme yaparken eþleyebilsin!!!
 
 -An unhandled exception occurred while processing the request.
 SocketException: Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý. Hatasý:
