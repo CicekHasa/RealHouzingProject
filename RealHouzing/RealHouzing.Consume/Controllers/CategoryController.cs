@@ -19,7 +19,7 @@ public class CategoryController : Controller
         var client =_httpClientFactory.CreateClient();
         //GetAsync veriyi çekmek için kullanılan bir methoddur.
         //Parametre içinde hangi apiye istek atacaksak onun url'ini girmek gerekiyor. Swaggerdan bakılabilir.
-        var responseMessage = await client.GetAsync("http://localhost:47572/api/Category");
+        var responseMessage = await client.GetAsync("http://localhost:7073/api/Category");
         //Response başarılı dönerse
         if (responseMessage.IsSuccessStatusCode)
         {
@@ -47,7 +47,7 @@ public class CategoryController : Controller
         //HTTP isteğinin body’sine JSON verisini eklemek için bir içerik nesnesi oluşturur.
         StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
         //client'a post işlemi yaparak hangi adresi kullanıcağını ve göndereceğin içeriği parametre olarak gönder.
-        var responseMessage = await client.PostAsync("http://localhost:47572/api/Category", stringContent);
+        var responseMessage = await client.PostAsync("http://localhost:7073/api/Category", stringContent);
         if (responseMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("Index");
@@ -58,7 +58,7 @@ public class CategoryController : Controller
     public async Task<IActionResult> DeleteCategory(int id)
     {
         var client=_httpClientFactory.CreateClient();
-        var responseMessage = await client.DeleteAsync($"http://localhost:47572/api/Category?id={id}");
+        var responseMessage = await client.DeleteAsync($"http://localhost:7073/api/Category?id={id}");
         if (responseMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("Index");
@@ -70,7 +70,7 @@ public class CategoryController : Controller
     public async Task<IActionResult> UpdateCategory(int id)
     {
         var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.GetAsync($"http://localhost:47572/api/Category/GetCategory?id={id}");
+        var responseMessage = await client.GetAsync($"http://localhost:7073/api/Category/GetCategory?id={id}");
         if (responseMessage.IsSuccessStatusCode)
         {
             //Gelen jsonDatayı string yapıya dönüştür.
@@ -87,7 +87,7 @@ public class CategoryController : Controller
         var client=_httpClientFactory.CreateClient();
         var jsonData=JsonConvert.SerializeObject(updateCategoryViewModel);
         StringContent stringContent = new StringContent(jsonData,Encoding.UTF8,"application/json");
-        var responseMessage = await client.PutAsync("http://localhost:47572/api/Category/",stringContent);
+        var responseMessage = await client.PutAsync("http://localhost:7073/api/Category/",stringContent);
         if (responseMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("Index");

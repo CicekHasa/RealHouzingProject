@@ -6,7 +6,7 @@ public class Context : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=HASANCICEKK\\MSSQLSERVER01; initial catalog=RealHouzingApiDb; integrated security=true");
+        optionsBuilder.UseSqlServer("Server=HASANCICEK\\SQLEXPRESS; initial catalog=RealHouzingApiDb; integrated security=true");
     }
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories { get; set; }
@@ -24,5 +24,14 @@ public class Context : DbContext
     public DbSet<Plan> Plans { get; set; }
     public DbSet<ContactInfo> ContactInfos { get; set; }
     public DbSet<ContactMessage> ContactMessages { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Product>()
+            .Property(p => p.ProductPrice)
+            .HasPrecision(18, 4);
+
+        base.OnModelCreating(modelBuilder);
+    }
 }
 

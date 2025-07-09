@@ -78,3 +78,19 @@ SocketException: Hedef makine etkin olarak reddettiðinden baðlantý kurulamadý. H
 
  -[Range(0, 100, ErrorMessage = "Yüzde deðeri 0 ile 100 arasýnda olmalýdýr.")]: Oluþturduðun entity içerisindeki fieldlar üzerine attrbute ekleyerek veri eklerken kontrolünü saðlayabilirsiniz. Eðer entity baðlantýsýný aradan çýkarýp Dto katmaný kullanýyorsanýz bu attrbute dto katmanýndaki field da olmalý. Bu attribute ise koyulduðu field'ýn 0-100 deðerlerinde girebilmesini aksi takdirde error message'ý basar.
 
+ -  No store type was specified for the decimal property 'ProductPrice' on entity type 'Product'... HATASI:
+ ProductPrice adýnda bir decimal property tanýmlamýþsýn ama EF Core varsayýlan olarak SQL tarafýnda decimal(18,2) kullanýyor. Eðer bu senin ihtiyacýný karþýlamýyorsa, deðerler kesilebilir (truncated). Bu yüzden seni uyarýyor.
+
+ Çözüm olarak context içerisinde Prodeuct entity'sini db sette oluþturduktan sonra OnModelCreating methodu yazarak içerisinde ProductPrice alaný decimal(18,2)
+ benim ihtiyacýmý karþýlar þekilde bir þey yazman gerek. Context.cs satýr 28
+
+
+ -An unhandled exception occurred while processing the request.
+SocketException: No connection could be made because the target machine actively refused it.
+System.Net.Sockets.Socket+AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+
+HttpRequestException: No connection could be made because the target machine actively refused it. (localhost:47572) HATASI
+Bu hata oluþtuðunda api ve consume katmanlarý ayný anda çalýþýyor swagger ekraný geliyor ama consume ekranýnda bu hata geliyorsa 
+swaggerda çalýþan endpointlerin adresi ile consume katmanýnda çalýþan controller'ýn adresleri ayný deðil.
+Projeyi yeniden indirdiyseniz veya pc formatlamasý yapýldýysa bu adresleri karþýlaþtýr. Farklýlýk vardýr.
+

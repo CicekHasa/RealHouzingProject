@@ -16,7 +16,7 @@ public class AboutController : Controller
     public async Task<IActionResult> Index()
     {
         var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.GetAsync("http://localhost:47572/api/About");
+        var responseMessage = await client.GetAsync("http://localhost:7073/api/About");
         if (responseMessage.IsSuccessStatusCode)
         {
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -30,7 +30,7 @@ public class AboutController : Controller
     public async Task<IActionResult> UpdateAbout(int id)
     {
         var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.GetAsync($"http://localhost:47572/api/About/GetListById?id={id}");
+        var responseMessage = await client.GetAsync($"http://localhost:7073/api/About/GetListById?id={id}");
         if (responseMessage.IsSuccessStatusCode)
         {
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -46,7 +46,7 @@ public class AboutController : Controller
         var jsonData = JsonConvert.SerializeObject(updateAboutViewModel);
         //Http istek body sine jsondata yı eklemek için içerik nesnesi oluşturmalıyız.
         StringContent stringContent = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
-        var responseMessage = await client.PutAsync("http://localhost:47572/api/About/", stringContent);
+        var responseMessage = await client.PutAsync("http://localhost:7073/api/About/", stringContent);
         if (responseMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("Index");

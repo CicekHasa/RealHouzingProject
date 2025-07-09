@@ -20,7 +20,7 @@ public class ProductController : Controller
 
         var client = _httpClientFactory.CreateClient();
         //Async method çağırırken 'await' keyini unutma!!
-        var responseMessage = await client.GetAsync("http://localhost:47572/api/Product");
+        var responseMessage = await client.GetAsync("http://localhost:7073/api/Product");
         if (responseMessage.IsSuccessStatusCode)
         {
             //Gelen datayı string'e dönüştürdük
@@ -34,7 +34,7 @@ public class ProductController : Controller
     public async Task<IActionResult> DeleteProduct(int id)
     {
         var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.DeleteAsync($"http://localhost:47572/api/Product?id={id}");
+        var responseMessage = await client.DeleteAsync($"http://localhost:7073/api/Product?id={id}");
         if (responseMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("Index");
@@ -47,7 +47,7 @@ public class ProductController : Controller
     {
         #region İlişkili tablodaki category bilgilerini dropdown'a atama
         var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.GetAsync("http://localhost:47572/api/Category");
+        var responseMessage = await client.GetAsync("http://localhost:7073/api/Category");
         var jsonData = await responseMessage.Content.ReadAsStringAsync();
         var values = JsonConvert.DeserializeObject<List<CategoryListViewModel>>(jsonData);
         List<SelectListItem> values2 = (from x in values
@@ -67,7 +67,7 @@ public class ProductController : Controller
         var client = _httpClientFactory.CreateClient();
         var jsonData = JsonConvert.SerializeObject(addProductViewModel);
         StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        var responseMessage = await client.PostAsync("http://localhost:47572/api/Product", stringContent);
+        var responseMessage = await client.PostAsync("http://localhost:7073/api/Product", stringContent);
         if (responseMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("Index");
@@ -80,7 +80,7 @@ public class ProductController : Controller
     {
         #region İlişkili kategori verilerini getiriyoruz
         var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.GetAsync("http://localhost:47572/api/Category");
+        var responseMessage = await client.GetAsync("http://localhost:7073/api/Category");
         var jsonData = await responseMessage.Content.ReadAsStringAsync();
         var values = JsonConvert.DeserializeObject<List<CategoryListViewModel>>(jsonData);
         List<SelectListItem> items = (from x in values
@@ -92,7 +92,7 @@ public class ProductController : Controller
         ViewBag.Categories = items;
         #endregion
         var _client = _httpClientFactory.CreateClient();
-        var _responseMessage = await _client.GetAsync($"http://localhost:47572/api/Product/GetProductById?id={id}");
+        var _responseMessage = await _client.GetAsync($"http://localhost:7073/api/Product/GetProductById?id={id}");
         if (_responseMessage.IsSuccessStatusCode)
         {
             var _jsonData = await _responseMessage.Content.ReadAsStringAsync();
@@ -108,7 +108,7 @@ public class ProductController : Controller
         var client = _httpClientFactory.CreateClient();
         var jsonData = JsonConvert.SerializeObject(updateProductViewModel);
         StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        var responseMessage = await client.PutAsync("http://localhost:47572/api/Product/", stringContent);
+        var responseMessage = await client.PutAsync("http://localhost:7073/api/Product/", stringContent);
         if (responseMessage.IsSuccessStatusCode)
         {
             return RedirectToAction("Index");
