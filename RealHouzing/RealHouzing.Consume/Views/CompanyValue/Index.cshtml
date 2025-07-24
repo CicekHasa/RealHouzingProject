@@ -1,0 +1,34 @@
+﻿@model List<CompanyValueListViewModel>
+@{
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <br /><br />
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Ana Başlık</th>
+            <th>Alt Başlık</th>
+            <th>Açıklama</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CompanyValueID</td>
+                <td>@item.MainTitle</td>
+                <td>@item.SubTitle</td>
+                <td>@item.Description</td>
+                <td><a href="/CompanyValue/DeleteCompanyValue/@item.CompanyValueID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/CompanyValue/UpdateCompanyValue/@item.CompanyValueID" class="btn btn-primary">Güncelle</a></td>
+            </tr>
+        }
+    </table>
+    <br />
+    <a href="/CompanyValue/AddCompanyValue/" class="btn btn-success">Yeni Kayıt Ekle</a>
+
+</div>

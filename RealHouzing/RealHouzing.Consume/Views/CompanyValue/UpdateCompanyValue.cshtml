@@ -1,0 +1,43 @@
+﻿@model UpdateCompanyValueViewModel
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <br />
+    <form method="post">
+        <br />
+        <input type="hidden" asp-for="CompanyValueID" />
+        <label>Ana Başlık</label>
+        <input type="text" class="form-control" asp-for="MainTitle" />
+        <br />
+        <label>Alt Başlık</label>
+        <input type="text" class="form-control" asp-for="SubTitle" />
+        <br />
+        <label>Açıklama</label>
+        <input type="text" class="form-control" asp-for="Description" />
+        <br />
+        <label>Değer Başlığı</label>
+        <input type="text" class="form-control" asp-for="ValueTitle1" />
+        <br />
+        <label>Yüzdelik Değeri</label>
+        <input type="number" class="form-control" asp-for="Percentage1" min="0" max="100" step="0.01" />
+        <br />
+        <label>Değer Başlığı</label>
+        <input type="text" class="form-control" asp-for="ValueTitle2" />
+        <br />
+        <label>Yüzdelik Değeri</label>
+        <input type="number" class="form-control" asp-for="Percentage2" min="0" max="100" step="0.01" />
+        <br />
+        <label>Değer Başlığı</label>
+        <input type="text" class="form-control" asp-for="ValueTitle3" />
+        <br />
+        <label>Yüzdelik Değeri</label>
+        <input type="number" class="form-control" asp-for="Percentage3" min="0" max="100" step="0.01" />
+        <br />
+        <button class="btn btn-primary">Veriyi Güncelle</button>
+    </form>
+</div>
+
