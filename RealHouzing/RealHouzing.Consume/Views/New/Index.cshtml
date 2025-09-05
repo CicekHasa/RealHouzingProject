@@ -1,0 +1,33 @@
+﻿@model List<NewListViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <br />
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Başlık</th>
+            <th>Açıklama</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NewID</td>
+                <td>@item.NewTitle</td>
+                <td>@item.NewDescription</td>
+                <td><a href="/New/DeleteNew/@item.NewID" class="btn btn-danger">Sil</a></td>
+                <td><a href="/New/UpdateNew/@item.NewID" class="btn btn-primary">Güncelle</a></td>
+            </tr>
+        }
+    </table>
+    <br />
+    <a href="/New/AddNew/" class="btn btn-success">Yeni Veri Ekle</a>
+</div>
+

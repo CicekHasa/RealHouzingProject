@@ -1,6 +1,6 @@
-﻿namespace RealHouzing.DtoLayer.NewDtos;
+﻿namespace RealHouzing.Consume.Models;
 
-public class AddNewDto
+public class AddNewListModel
 {
     public string NewTitle { get; set; }
     public string NewDescription { get; set; }

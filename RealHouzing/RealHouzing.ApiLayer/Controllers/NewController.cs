@@ -43,8 +43,8 @@ public class NewController : ControllerBase
     {
         New neww = new New()
         {
-            NewTitle = addNewDto.Title,
-            NewDescription = addNewDto.Description,
+            NewTitle = addNewDto.NewTitle,
+            NewDescription = addNewDto.NewDescription,
             NewImageUrl = addNewDto.NewImageUrl,
             AuthorName = addNewDto.AuthorName,
             AuthorImage = addNewDto.AuthorImage,

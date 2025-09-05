@@ -1,0 +1,27 @@
+﻿@model UpdateNewViewModel
+@{
+    ViewData["Title"] = "UpdateNew";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <br />
+    <form method="post">
+        <input type="hidden" asp-for=newID" />
+        <label>Başlık</label>
+        <input type="text" class="form-control" asp-for="newTitle"/>
+        <br />
+        <label>Açıklama</label>
+        <input type="text" class="form-control" asp-for="newDescription" />
+        <br />
+        <label>Resim Yolu</label>
+        <input type="text" class="form-control" asp-for="newImageUrl" />
+        <br />
+        <label>Yazar Resim Yolu</label>
+        <input type="text" class="form-control" asp-for="authorImage" />
+        <button class="btn btn-primary">Güncelle</button>
+    </form>
+</div>
+

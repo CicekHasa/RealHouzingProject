@@ -1,0 +1,30 @@
+﻿@model AddNewListModel
+@{
+    ViewData["Title"] = "AddNew";
+    Layout = "~/Views/AdminLayout/_AdminLayout.cshtml";
+}
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<div class="container">
+    <br />
+    <form method="post">
+        <br />
+        <label>Başlık</label>
+        <input type="text" class="form-control" asp-for="NewTitle" />
+        <br />
+        <label>Açıklama</label>
+        <input type="text" class="form-control" asp-for="NewDescription" />
+        <br />
+        <label>Resim Yolu</label>
+        <input type="text" class="form-control" asp-for="NewImageUrl" />
+        <br />
+        <label>Yazar Adı</label>
+        <input type="text" class="form-control" asp-for="AuthorName" />
+        <br />
+        <label>Yazar Resim Yolu</label>
+        <input type="text" class="form-control" asp-for="AuthorImage" />
+        <br />
+        <button class="btn btn-outline-primary">Kaydet</button>
+    </form>
+</div>
+
